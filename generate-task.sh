@@ -10,10 +10,14 @@ bdir="tasks/$tname"
 jdir="$bdir/java"
 rdir="$bdir/rust"
 mkdir -p "$jdir" "$rdir"
-cargo new "$rdir/$tname" --bin
-mvn -B archetype:generate \
-    -DarchetypeGroupId=org.apache.maven.archetypes \
-    -DgroupId=se.cygni.rust \
-    -DartifactId=$tname
-    -Dbasedir="$jdir/npe"
-
+cargo init --bin --name "$tname" "$rdir"
+(
+  cd $jdir
+  mvn -B \
+  archetype:generate \
+  -DarchetypeGroupId=org.apache.maven.archetypes \
+  -DgroupId="se.cygni.$tname" \
+  -DartifactId=$tname
+  mv $tname/* .
+  rmdir $tname
+)
