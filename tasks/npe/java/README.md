@@ -20,11 +20,22 @@ a Java program?
 
 Your task is now to code the same solution into a Rust program. Can you end up with the same bug? The Rust program
 already contains logic which does everything the Java program does, except reading the
-environment variable. Add this part of the program.
+environment variable. 
 
-The rust program can be run with
+The rust program can be ran with
 ```bash
 $ cargo run
+Compiling npe v0.1.0 (file:///Users/alexandert/projects/private/where-rust-shines/tasks/npe/rust)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.36 secs
+     Running `target/debug/npe`
+Kalle
+$ 
+```
+
+Your task is to add the environment variable reading part of the program.
+You can read an environment variable with
+```rust
+let username = std::env::var("CONF_USERNAME")
 ```
 
 ## Part 4 - Discussion

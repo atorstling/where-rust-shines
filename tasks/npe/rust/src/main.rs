@@ -6,5 +6,7 @@ fn safe_print(s: String) {
 }
 
 fn main() {
-   safe_print(String::from("Hello, world!"));
+   let username = String::from("Kalle");
+   //let username = std::env::var("CONF_USERNAME");
+   safe_print(username);
 }

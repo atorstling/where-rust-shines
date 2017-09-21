@@ -9,6 +9,7 @@ public class App
 
     public static void main( String[] args )
     {
-        safePrint(System.getenv("DESKTOP"));
+        String awesomeness = System.getenv("CONF_AWESOMENESS");
+        safePrint(awesomeness);
     }
 }
