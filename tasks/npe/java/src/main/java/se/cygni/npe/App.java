@@ -1,13 +1,14 @@
 package se.cygni.npe;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
+    private static void safePrint(final String message) {
+        String cleaned = message.replaceAll("\n", "");
+        System.out.println(cleaned);
+    }
+
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        safePrint(System.getenv("DESKTOP"));
     }
 }
