@@ -1,7 +1,12 @@
 # Null Pointer Exception (NPE)
 
+- Just make it one excercise with discussion at the end
+- Just check the problem with the Java code, uncomment it in Rust
+- Then fix the rust code using a suitable choice of methods from Rust
+- Discuss how Rust vs. Java handles values that don't exist
+
 ## Part 1 - Analyze the Java Program
-This excercise contains a java program which reads a environment variable, cleans it up and prints it to stdout.
+This excercise contains a java program which reads an environment variable, cleans it up and prints it to stdout.
 
 To run it from the command line, do
 ```bash
@@ -41,4 +46,4 @@ let username = std::env::var("CONF_USERNAME")
 ## Part 4 - Discussion
 
 Did Rust sucessfully prevent you from making the same mistake? How?
-Do you these preventions are a good idea to build into the language?
+Do you think these preventions are a good idea to build into the language?
