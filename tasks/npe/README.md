@@ -17,7 +17,7 @@ $ java -jar target/npe-1.0-SNAPSHOT.jar
 
 Your first task is to run it, see that it throws an exception, and to figure out why the exception arises.
 
-## Part 2 - Discussion
+## Part 2 - Mob Discussion
 Is this type of mistake something you have made earlier? Do you think it could be a common source of error in
 a Java program?
 
@@ -25,7 +25,7 @@ a Java program?
 
 Your task is now to code the same solution into a Rust program. Can you end up with the same bug? The Rust program
 already contains logic which does everything the Java program does, except reading the
-environment variable. 
+environment variable.
 
 The rust program can be ran with
 ```bash
@@ -34,7 +34,7 @@ Compiling npe v0.1.0 (file:///Users/alexandert/projects/private/where-rust-shine
     Finished dev [unoptimized + debuginfo] target(s) in 0.36 secs
      Running `target/debug/npe`
 Kalle
-$ 
+$
 ```
 
 Your task is to add the environment variable reading part of the program.
@@ -43,7 +43,7 @@ You can read an environment variable with
 let username = std::env::var("CONF_USERNAME")
 ```
 
-## Part 4 - Discussion
+## Part 4 - Mob Discussion
 
 Did Rust sucessfully prevent you from making the same mistake? How?
 Do you think these preventions are a good idea to build into the language?

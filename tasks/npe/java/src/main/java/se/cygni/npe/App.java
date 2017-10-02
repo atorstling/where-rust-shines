@@ -2,14 +2,13 @@ package se.cygni.npe;
 
 public class App
 {
-    private static void safePrint(final String message) {
-        String cleaned = message.replaceAll("\n", "");
-        System.out.println(cleaned);
+    static String cleanup(final String message) {
+        return message.replaceAll("\n", "");
     }
 
     public static void main( String[] args )
     {
-        String awesomeness = System.getenv("CONF_AWESOMENESS");
-        safePrint(awesomeness);
+        String username = System.getenv("NPE_USERNAME");
+        System.out.println(cleanup(username));
     }
 }

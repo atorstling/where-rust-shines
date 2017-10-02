@@ -7,6 +7,6 @@ fn safe_print(s: String) {
 
 fn main() {
    let username = String::from("Kalle");
-   //let username = std::env::var("CONF_USERNAME");
+   //let username = std::env::var("NPE_USERNAME");
    safe_print(username);
 }
