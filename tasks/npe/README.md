@@ -37,11 +37,13 @@ Kalle
 $
 ```
 
-Your task is to add the environment variable reading part of the program.
-You can read an environment variable with
-```rust
-let username = std::env::var("CONF_USERNAME")
-```
+Your task is to replace the static name "Kalle" with reading from an
+environment variable. Comment out the line which defines
+the `username` variable to "Kalle" and uncomment the line which reads
+it from an environment variable.
+
+Can you get it to compile? Can you get the same bug? What does the language
+force you to do?
 
 ## Part 4 - Mob Discussion
 
