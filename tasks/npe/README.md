@@ -1,12 +1,7 @@
 # Null Pointer Exception (NPE)
 
-- Just make it one excercise with discussion at the end
-- Just check the problem with the Java code, uncomment it in Rust
-- Then fix the rust code using a suitable choice of methods from Rust
-- Discuss how Rust vs. Java handles values that don't exist
-
 ## Part 1 - Analyze the Java Program
-This excercise contains a java program which reads an environment variable, cleans it up and prints it to stdout.
+This exercise contains a java program which reads an environment variable, cleans it up and prints it to stdout.
 
 To run it from the command line, do
 ```bash
@@ -23,7 +18,7 @@ a Java program?
 
 ## Part 3 - Replicate same mistake in Rust
 
-Your task is now to code the same solution into a Rust program. Can you end up with the same bug? The Rust program
+Your task is now to naively code the same buggy solution into a Rust program. Can you end up with the same bug? The Rust program
 already contains logic which does everything the Java program does, except reading the
 environment variable.
 
@@ -38,25 +33,46 @@ $
 ```
 
 Your task is to replace the static name "Kalle" with reading from an
-environment variable. Comment out the line which defines
+environment variable. Comment out the line which sets
 the `username` variable to "Kalle" and uncomment the line which reads
 it from an environment variable.
 
 Try to get it to compile. Is it easy to make the same mistake in
 Rust as in Java? See below for hints.
 
-## Hints
+### Hints
 
 1. Try to determine the type of the username variable. Is it a string? Is
-   it nullable?
+   it nullable? To check the type, you can
+   add a type declaration to the username
+   variable, like so: `let username: String = ...`.
+   This causes the compiler to complain if the
+   types don't match.
 
-2. A result object can be destructured by
+2. Rust doesn't have nullable types, but it
+   does have a [result type](https://doc.rust-lang.org/std/result/).
+
+3. A result object can be destructured by
    [matching](https://rustbyexample.com/flow_control/match.html), or
-   optimitically fetched by calling [unwrap](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap).
+   optimistically unboxed by calling [unwrap](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap).
    Note that you can provide fallback values with methods like
-   [unwrap_or](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or)
+   [unwrap_or](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or).
+
+4. If you see an error like
+   ```rust
+   ^^^^^^^ expected struct `std::string::String`, found reference
+   |
+   = note: expected type `std::string::String`
+              found type `&'static str`
+   ```
+   , you are dealing with the two standard
+   string types in Rust. String constants like
+   `"Kalle"` are references to the constant, immutable type `str`. Sometimes the mutable
+   and sized type `String` is required. you
+   can convert to `String` by calling
+   `to_owned()`, like so: `let a_string: String = "Kalle".to_owned();`
 
 ## Part 4 - Mob Discussion
 
-Did Rust sucessfully prevent you from making the same mistake? How?
+Did Rust successfully prevent you from making the same mistake? How?
 Do you think these preventions are a good idea to build into the language?
