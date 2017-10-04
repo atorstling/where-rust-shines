@@ -42,8 +42,19 @@ environment variable. Comment out the line which defines
 the `username` variable to "Kalle" and uncomment the line which reads
 it from an environment variable.
 
-Can you get it to compile? Can you get the same bug? What does the language
-force you to do?
+Try to get it to compile. Is it easy to make the same mistake in
+Rust as in Java? See below for hints.
+
+## Hints
+
+1. Try to determine the type of the username variable. Is it a string? Is
+   it nullable?
+
+2. A result object can be destructured by
+   [matching](https://rustbyexample.com/flow_control/match.html), or
+   optimitically fetched by calling [unwrap](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap).
+   Note that you can provide fallback values with methods like
+   [unwrap_or](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or)
 
 ## Part 4 - Mob Discussion
 
