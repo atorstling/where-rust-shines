@@ -1,4 +1,4 @@
-package se.cygni.mutable;
+package se.cygni.passby;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
