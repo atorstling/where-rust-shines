@@ -4,13 +4,13 @@ struct Worker {
 
 impl Worker {
   fn do_work(&mut self) {
-    if self.worker_time > 10 {
+    if self.worker_time > 2 {
       println!("Uh oh, worker is out of time!");
       return;
     }
 
     println!("Doing some work as we have time left!");
-    self.worker_time -= 5;
+    self.worker_time -= 0;
   }
 }
 
@@ -37,4 +37,11 @@ fn main() {
   let mut core = Core { workers: workers };
   core.round_robin();
   core.round_robin();
+
+  let mut n = 1000;
+  for i in 1..10000 {
+    n *= i;
+  }
+
+  println!("now n is {}", n);
 }
