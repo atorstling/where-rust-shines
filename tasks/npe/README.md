@@ -1,49 +1,28 @@
 # Null Pointer Exception (NPE)
 
+This excercise showcases the philosophy around null pointers in Rust. We do this by means of a program
+which reads an environment variable, cleans it up and displays it on stdout. The program has a bug: when the variable is missing, the Java program crashes.  
+
 ## Part 1 - Analyze the Java Program
-This exercise contains a java program which reads an environment variable, cleans it up and prints it to stdout.
 
-To run it from the command line, do
-```bash
-$ mvn
-...
-$ java -jar target/npe-1.0-SNAPSHOT.jar
-```
+Run the Java program, see that it throws an exception, and try to figure out why the exception arises.
 
-Your first task is to run it, see that it throws an exception, and to figure out why the exception arises.
-
-## Part 2 - Mob Discussion
-Is this type of mistake something you have made earlier? Do you think it could be a common source of error in
-a Java program?
-
-## Part 3 - Replicate same mistake in Rust
+## Part 2 - Try and fix the same mistake in Rust
 
 Your task is now to naively code the same buggy solution into a Rust program. Can you end up with the same bug? The Rust program
 already contains logic which does everything the Java program does, except reading the
-environment variable.
+environment variable. 
 
-The rust program can be ran with
-```bash
-$ cargo run
-Compiling npe v0.1.0 (file:///Users/alexandert/projects/private/where-rust-shines/tasks/npe/rust)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.36 secs
-     Running `target/debug/npe`
-Kalle
-$
-```
-
-Your task is to replace the static name "Kalle" with reading from an
-environment variable. Comment out the line which sets
-the `username` variable to "Kalle" and uncomment the line which reads
+Change the definition of the username variable by commenting out the line which sets
+it to "Kalle" and uncomment the line which reads
 it from an environment variable.
 
 Try to get it to compile. Is it easy to make the same mistake in
-Rust as in Java? See below for hints.
+Rust as in Java? 
 
-### Hints
+### Things to Know
 
-1. Try to determine the type of the username variable. Is it a string? Is
-   it nullable? To check the type, you can
+1. To check the type of a variable, you can
    add a type declaration to the username
    variable, like so: `let username: String = ...`.
    This causes the compiler to complain if the
@@ -71,8 +50,3 @@ Rust as in Java? See below for hints.
    and sized type `String` is required. you
    can convert to `String` by calling
    `to_owned()`, like so: `let a_string: String = "Kalle".to_owned();`
-
-## Part 4 - Mob Discussion
-
-Did Rust successfully prevent you from making the same mistake? How?
-Do you think these preventions are a good idea to build into the language?

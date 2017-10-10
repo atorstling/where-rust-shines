@@ -10,3 +10,80 @@ You need:
 - **Java**;
 - **Maven**;
 - Rust, install the latest stable version via [rustup](https://www.rustup.rs/).
+
+## How to run a Rust task
+
+Once you are standing in a rust directory with a `Cargo.toml` file, you can run the program with
+`cargo run`:
+
+```bash
+$ cargo run
+Compiling npe v0.1.0 (file:///Users/alexandert/projects/private/where-rust-shines/tasks/npe/rust)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.36 secs
+     Running `target/debug/npe`
+Kalle
+$
+```
+## How to run a Java task
+
+```bash
+alext@smith:~/projects/where-rust-shines/tasks/npe/java$ mvn clean install && java -jar target/*.jar
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building npe 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ npe ---
+[INFO] Deleting /home/alext/projects/where-rust-shines/tasks/npe/java/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ npe ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /home/alext/projects/where-rust-shines/tasks/npe/java/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.0:compile (default-compile) @ npe ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to /home/alext/projects/where-rust-shines/tasks/npe/java/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ npe ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /home/alext/projects/where-rust-shines/tasks/npe/java/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.0:testCompile (default-testCompile) @ npe ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to /home/alext/projects/where-rust-shines/tasks/npe/java/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ npe ---
+[INFO] Surefire report directory: /home/alext/projects/where-rust-shines/tasks/npe/java/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running se.cygni.npe.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.078 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:3.0.2:jar (default-jar) @ npe ---
+[INFO] Building jar: /home/alext/projects/where-rust-shines/tasks/npe/java/target/npe-1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ npe ---
+[INFO] Installing /home/alext/projects/where-rust-shines/tasks/npe/java/target/npe-1.0-SNAPSHOT.jar to /home/alext/.m2/repository/se/cygni/npe/npe/1.0-SNAPSHOT/npe-1.0-SNAPSHOT.jar
+[INFO] Installing /home/alext/projects/where-rust-shines/tasks/npe/java/pom.xml to /home/alext/.m2/repository/se/cygni/npe/npe/1.0-SNAPSHOT/npe-1.0-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 4.854 s
+[INFO] Finished at: 2017-10-10T16:27:09+02:00
+[INFO] Final Memory: 16M/128M
+[INFO] ------------------------------------------------------------------------
+Exception in thread "main" java.lang.NullPointerException
+	at se.cygni.npe.App.cleanup(App.java:6)
+	at se.cygni.npe.App.main(App.java:12)
+alext@smith:~/projects/where-rust-shines/tasks/npe/java$
+```
