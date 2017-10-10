@@ -1,5 +1,4 @@
 extern crate crossbeam;
-use std::sync::atomic::{AtomicUsize, Ordering};
 
 fn main() {
     let thread_count = 10;
