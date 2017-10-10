@@ -17,7 +17,7 @@ public class App {
   }
 
   public static final class Worker {
-    int workerTime = 10;
+    int workerTime = 2;
 
     void doWork() {
       if (workerTime < 0) {
@@ -26,7 +26,7 @@ public class App {
       }
 
       System.out.println("Doing some work as we have time left!");
-      workerTime -= 5;
+      workerTime -= 1;
     }
   }
 

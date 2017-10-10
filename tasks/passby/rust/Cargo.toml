@@ -1,0 +1,6 @@
+[package]
+name = "passby"
+version = "0.1.0"
+authors = ["Martin Barksten <martin.barksten@gmail.com>"]
+
+[dependencies]
