@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         final int threadCount = 10;
-        final int loopsPerThread = 100000;
+        final int incrementsPerThread = 100000;
 
         final CountDownLatch everyoneReady = new CountDownLatch(threadCount);
         final CountDownLatch startSignal = new CountDownLatch(1);
@@ -18,7 +18,7 @@ public class App {
             final Thread t = new Thread(() -> {
                 everyoneReady.countDown();
                 await(startSignal, "Timeout waiting for start signal");
-                for (int j1 = 0; j1 < loopsPerThread; j1++) {
+                for (int j1 = 0; j1 < incrementsPerThread; j1++) {
                     i += 1;
                 }
                 everyoneDone.countDown();
@@ -28,7 +28,7 @@ public class App {
         await(everyoneReady, "Timeout waiting for threads to start");
         startSignal.countDown();
         await(everyoneDone, "Timeout while waiting for threads to terminate");
-        System.out.printf("Result of %s*%s increments: %d", threadCount, loopsPerThread, i);
+        System.out.printf("Result of %s*%s increments: %d", threadCount, incrementsPerThread, i);
     }
 
     private static void await(CountDownLatch latch, String message) {
