@@ -1,30 +1,42 @@
 package se.cygni.divisible;
 
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class App {
 
-    static int i;
+    //static AtomicInteger i = new AtomicInteger(0);
+    static int i = 0;
 
     public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
-        final ExecutorService es = Executors.newFixedThreadPool(10);
-        final ExecutorCompletionService ecs = new ExecutorCompletionService(es);
+        final int nThreads = 10;
 
-        ecs.submit(new Callable() {
-            public Object call() throws Exception {
-                i += 1;
-                return null;
-            }
-        });
-        
-        Future f;
-        while((f = ecs.poll()) != null) {
-            f.get(1, TimeUnit.SECONDS);
+        final CountDownLatch started = new CountDownLatch(nThreads);
+        final CountDownLatch mayBegin = new CountDownLatch(1);
+        final CountDownLatch done = new CountDownLatch(nThreads);
+        for (int j = 0; j < nThreads; j++) {
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        started.countDown();
+                        mayBegin.await(1, TimeUnit.SECONDS);
+                        for (int j = 0; j < 1000; j++) {
+                            i += 1;
+                            //i.incrementAndGet();
+                        }
+                        done.countDown();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }).start();
         }
-        es.shutdown();
-        final boolean success = es.awaitTermination(1, TimeUnit.SECONDS);
+        started.await(1, TimeUnit.SECONDS);
+        mayBegin.countDown();
+        final boolean success = done.await(5, TimeUnit.SECONDS);
         if (!success) {
-            throw new RuntimeException("Timeout waiting for termination");
+            throw new RuntimeException("Timeout while waiting for threads to terminate");
         }
+        System.out.println("Sum: " + i);
     }
 }
