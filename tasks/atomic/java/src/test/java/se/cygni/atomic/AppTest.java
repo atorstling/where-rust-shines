@@ -1,4 +1,4 @@
-package se.cygni.divisible;
+package se.cygni.atomic;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,5 +1,5 @@
 [package]
-name = "divisible"
+name = "atomic"
 version = "0.1.0"
 authors = ["Alexander Torstling <alexander@torstling.com>"]
 
