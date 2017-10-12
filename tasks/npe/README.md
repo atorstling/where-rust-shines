@@ -7,7 +7,7 @@ which reads an environment variable, cleans it up and displays it on stdout. The
 
 Run the Java program, see that it throws an exception, and try to figure out why the exception arises.
 
-## Part 2 - Try and fix the same mistake in Rust
+## Part 2 - Fix the same mistake in Rust
 
 Your task is now to naively code the same buggy solution into a Rust program. Can you end up with the same bug? The Rust program
 already contains logic which does everything the Java program does, except reading the

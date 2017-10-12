@@ -26,7 +26,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>se.cygni.npe.App</mainClass>
+                            <mainClass>se.cygni.atomic.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
