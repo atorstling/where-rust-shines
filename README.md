@@ -1,15 +1,62 @@
 # Where Rust shines
 A workshop to learn `Java{,script}` developers to write more robust code by showing how Rust forces you to do so.
 
-## Tasks
-The repository is separated into a number of tasks that all illustrate common and easy to make mistakes in Java. There is also a matching Rust-project that illustrates how Rust, through its focus on building robust software prevents these mistakes.
-
 ## Required environment
 You need:
-- **A text editor with support for Rust**, the recommndation is to use Visual Studio Code with the Rust(RLS) extension, since you will also be looking at (but not writing) Java code, install the Java-extension for Visual Studio Code as well;
+- `Rust`, install the latest stable version via [rustup](https://www.rustup.rs/),
+  see installation and set-up instructions below;
+- **A text editor with support for Rust**, the recommendation is to use Visual 
+  Studo Code, see installation and set-up instructions below.
 - **Java**;
-- **Maven**;
-- Rust, install the latest stable version via [rustup](https://www.rustup.rs/).
+- **Maven**.
+
+
+### Installing Rust
+Run `curl https://sh.rustup.rs -sSf | sh` to install `rustup`. 
+
+For these exercises we'll use a nightly version of `rust` (it is quite common when
+developing Rust to use nightly for development and build for production with
+stable).
+
+
+```shell
+rustup install stable
+rustup default stable
+rustc --version
+# Should print something similar to this:
+# rustc 1.21.0 (3b72af97e 2017-10-09)
+
+rustup install nightly-2017-10-15
+# We'll add an override for this specific repository, so ensure you stand the root of it when running the command
+rustup override set nightly
+rustc --version
+# Should print something similar this:
+# rustc 1.22.0-nightly (7778906be 2017-10-14) 
+```
+
+### Installing Visual Studio Code for Rust
+
+```shell
+# If you are on macOS and have brew and brew cask:
+brew cask install visual-studio-code 
+```
+
+Otherwise, see [the installation instructions](https://code.visualstudio.com/docs/setup/setup-overview).
+
+Then:
+- Open Visual Studio Code (which will be referred to as vscode henceforth);
+- Press `cmd+shift+p` to open the Command Palette;
+- Write `ext install` and select the alternative `Extensions: Install extensions`;
+- Type Rust and install the alternative called `Rust (rls)`;
+- Since you will be looking at Java-code as well, write Java and install
+  `Language Support for Java(TM) by Red Hat`;
+- Open one of the Rust files (called `main.rs`) and you should see `RLS: ...` in
+  the status bar at the bottom. Wait for RLS to set up properly and see that
+  syntax highlighting and auto-completion work.
+
+
+## Tasks
+The repository is separated into a number of tasks that all illustrate common and easy to make mistakes in Java. There is also a matching Rust-project that illustrates how Rust, through its focus on building robust software prevents these mistakes. 
 
 ## How to run a Rust task
 
