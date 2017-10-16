@@ -50,9 +50,21 @@ Then:
 - Type Rust and install the alternative called `Rust (rls)`;
 - Since you will be looking at Java-code as well, write Java and install
   `Language Support for Java(TM) by Red Hat`;
-- Open one of the Rust files (called `main.rs`) and you should see `RLS: ...` in
-  the status bar at the bottom. Wait for RLS to set up properly and see that
-  syntax highlighting and auto-completion work.
+
+Since we have structured the project kind of as a monorepo, you need to enable
+support for Rust workspaces. To do this go to your settings in vscode (`cmd+,`)
+and add the following:
+
+```json
+{
+    "rust.unstable_features": true,
+    "rust.workspace_mode": true
+}
+```
+
+With this done open one of the Rust files (called `main.rs`) and you should see
+`RLS: ...` in the status bar at the bottom. Wait for RLS to set up properly and
+see that syntax highlighting and auto-completion work.
 
 ### Verifying your environment
 To verify your environment clone this repo (if you have not already done so) and
