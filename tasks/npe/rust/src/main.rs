@@ -6,6 +6,6 @@ fn cleanup(s: String) -> String {
 
 fn main() {
     let username = String::from("Kalle");
-    let username = std::env::var("NPE_USERNAME");
+    //let username = std::env::var("NPE_USERNAME");
     println!("{}", cleanup(username));
 }
