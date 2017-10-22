@@ -184,3 +184,15 @@ Exception in thread "main" java.lang.NullPointerException
   at se.cygni.npe.App.main(App.java:12)
 alext@smith:~/projects/where-rust-shines/tasks/npe/java$
 ```
+
+
+## TODO 
+- [ ] Lägg till pusselbitar till alla övningar (Båda)
+- [ ] Sy ihop det hela (Barkis)
+- [ ] Presentation: Rusts koncept (Torstling)
+- [ ] Presentation: Rust syntax (Barkis)
+- [ ] Presentation: Result & Option vs Exception & Mutable, Move semantics (ägandeskap) (Barkis)
+- [ ] En till övning kring ägandeskap (Barkis)
+- [ ] Presentation: trådning (Torstling)
+- [ ] Channels (Barkis)
+- [ ] std::sync::Arc (Torstling)
