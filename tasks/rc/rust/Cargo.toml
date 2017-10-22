@@ -1,0 +1,7 @@
+[package]
+name = "rc"
+version = "0.1.0"
+authors = ["Alexander Torstling <alexander@torstling.com>"]
+
+[dependencies]
+crossbeam = "0.3.0"
