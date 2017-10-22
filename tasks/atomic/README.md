@@ -37,9 +37,5 @@ happens. Can you fix the problem?
    [into_inner](https://doc.rust-lang.org/std/sync/atomic/struct.AtomicUsize.html#method.into_inner).
    You may only use `into_inner` if you are the only owner of the data, and there are
    no outstanding borrows. For this to hold you would need to guarantee that the thread is
-   terminated before reading. Something which is possible with the `crossbeam` library. To use it,
-   declare `extern crate crossbeam;` at the top of the file, and use 
-   [scope.spawn](https://aturon.github.io/crossbeam-doc/crossbeam/fn.scope.html) instead
-   of `thread::spawn`. After `crossbeam::spawn` has terminated, all threads will be
-   ended and the sole owner of the `i` variable will then be the main thread, allowing you
-   to use `into_inner`.
+   terminated before reading. Something which is possible with the `crossbeam` library, but 
+   not with the standard threading lib.
