@@ -1,17 +1,20 @@
-use std::thread;
-
-static THREAD_COUNT: u32 = 10;
-static INCREMENTS_PER_THREAD: u32 = 100000;
+extern crate crossbeam;
 
 fn main() {
+    let thread_count = 10;
+    let increments_per_thread = 100000;
     let i = 0;
-    thread::spawn(|| {
-                      for _ in 0..INCREMENTS_PER_THREAD {
-                          //i+=1;
-                      }
-                  });
+    crossbeam::scope(|scope| {
+        for _ in 0..thread_count {
+            scope.spawn(|| {
+                            for _ in 0..increments_per_thread {
+                                //i+=1;
+                            }
+                        });
+        }
+    });
     println!("Result of {}*{} increments: {}",
-             THREAD_COUNT,
-             INCREMENTS_PER_THREAD,
+             thread_count,
+             increments_per_thread,
              i);
 }
