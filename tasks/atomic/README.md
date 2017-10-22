@@ -30,11 +30,16 @@ happens. Can you fix the problem?
 
    #### Ordering
    One solution is to write with the `Release` memory ordering and to read with the
-   `Acquire` ordering. This makes sure that the read sees all writes. This
-   works in the general case of concurrent reading and writing.
+   `Acquire` ordering. This makes sure that the read sees all previous writes. 
 
    Alternatively, we can exploit the case that we only read when we're done writing.
    This means that you may write with `Relaxed` mode and read back with the consuming
    [into_inner](https://doc.rust-lang.org/std/sync/atomic/struct.AtomicUsize.html#method.into_inner).
    You may only use `into_inner` if you are the only owner of the data, and there are
-   no outstanding borrows.
+   no outstanding borrows. For this to hold you would need to guarantee that the thread is
+   terminated before reading. Something which is possible with the `crossbeam` library. To use it,
+   declare `extern crate crossbeam;` at the top of the file, and use 
+   [scope.spawn](https://aturon.github.io/crossbeam-doc/crossbeam/fn.scope.html) instead
+   of `thread::spawn`. After `crossbeam::spawn` has terminated, all threads will be
+   ended and the sole owner of the `i` variable will then be the main thread, allowing you
+   to use `into_inner`.
