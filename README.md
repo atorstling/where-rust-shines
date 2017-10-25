@@ -16,7 +16,14 @@ Run `curl https://sh.rustup.rs -sSf | sh` to install `rustup`.
 
 For these exercises we'll use a nightly version of `rust` (it is quite common when
 developing Rust to use nightly for development and build for production with
-stable).
+stable). Before carrying out the commands below (at least the last part with override) make sure to clone this repository and place yourself at the root. 
+
+```shell
+git clone git@github.com:atorstling/where-rust-shines.git
+cd where-rust-shines.git
+```
+
+Then proceed with installation
 
 
 ```shell
@@ -71,10 +78,10 @@ To verify your environment clone this repo (if you have not already done so) and
 navigate to it in your terminal.
 
 ```shell
-# Go to the task
-$ cd tasks/happy/rust
+# Go to the Java part of the task
+$ cd tasks/happy/java
 
-# Go to the Java part of the task and build it
+# Build it
 $ mvn clean install && java -jar target/*.jar
 ...
 [INFO] ------------------------------------------------------------------------
