@@ -1,4 +1,4 @@
-package se.cygni.passby;
+package se.cygni.snakev1;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

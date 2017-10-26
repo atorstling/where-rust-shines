@@ -17,16 +17,16 @@ public class App {
   }
 
   public static final class Worker {
-    int workerTime = 2;
+    int timeTillDone = 2;
 
     void doWork() {
-      if (workerTime < 0) {
-        System.out.println("Uh oh, worker is out of time!");
+      if (timeTillDone <= 0) {
+        System.out.println("The worker is done!");
         return;
       }
 
-      System.out.println("Doing some work as we have time left!");
-      workerTime -= 1;
+      System.out.println("Doing some work as we have work left to do!");
+      timeTillDone -= 1;
     }
   }
 

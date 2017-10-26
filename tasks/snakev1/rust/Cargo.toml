@@ -1,0 +1,19 @@
+[package]
+name = "snakev1"
+version = "0.1.0"
+authors = ["Martin Barksten <martin.barksten@gmail.com>"]
+
+[dependencies]
+ws = "*"
+serde = "*"
+serde_json = "*"
+serde_derive = "*"
+quick-error = "*"
+log = "*"
+log4rs = { version = "*", features=["toml_format"] }
+target_info = "*"
+rustc_version = "*"
+config = "*"
+clap = "*"
+slog = "*"
+slog-term = "*"

@@ -26,22 +26,6 @@ impl Core {
   }
 }
 
-fn main() {
-  let mut worker = Worker { worker_time: 10};
-  let mut workers: Vec<Worker> = vec![];
-
-  // for i in 1..5 {
-  //   workers.push(worker);
-  // }
-
-  let mut core = Core { workers: workers };
-  core.round_robin();
-  core.round_robin();
-
-  let mut n = 1000;
-  for i in 1..10000 {
-    n *= i;
-  }
-
-  println!("now n is {}", n);
+fn main() { 
+    // implement the Java-code in Rust and see if it works
 }
