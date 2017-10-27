@@ -192,14 +192,32 @@ Exception in thread "main" java.lang.NullPointerException
 alext@smith:~/projects/where-rust-shines/tasks/npe/java$
 ```
 
+## Doing stuff
+The exercise is split into three parts, the first part is done alone and the
+other two in groups:
+1. The very basics of the language;
+2. Non-threaded Rust;
+3. Threaded Rust.
+
+### Part 1
+The exercises for Part 1 should be done in the following order:
+- [ ] `npe`
+- [ ] `ownership` 
+
+If you finish all of the above, look at the task `snakev1` which is a larger Rust
+project.
+
+### Part 2
+- [ ] `atomic`
+- [ ] `mutex`
+
+If you finish all of the above, begin or continue with `snakev1`.
 
 ## TODO 
-- [ ] Lägg till pusselbitar till alla övningar (Båda)
-- [ ] Sy ihop det hela (Barkis)
-- [ ] Presentation: Rusts koncept (Torstling)
 - [x] Presentation: Rust syntax (Barkis)
 - [x] Presentation: Result & Option vs Exception & Mutable, Move semantics (ägandeskap) (Barkis)
-- [ ] En till övning kring ägandeskap (Barkis)
+- [ ] Övning kring Option (Barkis)
+- [ ] Övning kring Result (Barkis)
+- [ ] Presentation: Rusts koncept (Torstling)
 - [ ] Presentation: trådning (Torstling)
-- [ ] Channels (Barkis)
-- [ ] std::sync::Arc (Torstling)
+- [ ] Sy ihop det hela (Barkis)
