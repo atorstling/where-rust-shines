@@ -32,3 +32,16 @@ In Java we could do different things which violates this:
     list. -> not guaranteed to be in sync
     Rust would not allow this without holding at least a different mutex on the counter
   * Synchronize on a mutable variable. Rust would forbid doing this (I guess?)
+
+```
+use std::sync::Mutex;
+
+fn main() {
+    let m = Mutex::new(0u32);
+    {
+      let mut guard = m.lock().unwrap();
+      *guard += 1;
+    }
+    println!("{:?}", m);
+}
+```

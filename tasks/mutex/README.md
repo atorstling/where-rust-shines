@@ -1,6 +1,6 @@
 # Mutex
 
-This excersise is a follow-up to the atomics one. This time we look into how
+This exercise is a follow-up to the atomics one. This time we look into how
 you can protect larger data structures.
 
 ## Part 1 - Analyze the Java Program
@@ -22,5 +22,21 @@ happens. Can you fix the problem?
    by calling something like `let guard = mutex.lock()` or`let guard = rwlock.read()`.
    These guard variables will keep the mutex or rwlocked locked until the guard
    goes out of scope. Also see [MutexGuard](https://doc.rust-lang.org/std/sync/struct.MutexGuard.html)
-   and [RwLockReadGuard](https://doc.rust-lang.org/std/sync/struct.RwLockReadGuard.html) 
+   , [RwLockReadGuard](https://doc.rust-lang.org/std/sync/struct.RwLockReadGuard.html) and
    [RwLockWriteGuard](https://doc.rust-lang.org/std/sync/struct.RwLockWriteGuard.html).
+
+   Dereferencing these guard objects gives
+   you the wrapped object:
+
+   ```
+   use std::sync::Mutex;
+
+   fn main() {
+       let m = Mutex::new(0u32);
+       {
+         let mut guard = m.lock().unwrap();
+         *guard += 1;
+       }
+       println!("{:?}", m);
+   }
+   ```

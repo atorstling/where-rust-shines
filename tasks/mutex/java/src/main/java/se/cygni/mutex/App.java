@@ -1,4 +1,4 @@
-package se.cygni.rc;
+package se.cygni.mutex;
 
 import java.util.*;
 import java.util.concurrent.*;
