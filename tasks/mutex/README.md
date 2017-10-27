@@ -3,14 +3,27 @@
 This exercise is a follow-up to the atomics one. This time we look into how
 you can protect larger data structures.
 
+We do this with a program which mutates a list
+of users from several threads. Several threads
+are adding users, and one thread is waiting
+for a user with a certain last name to be
+added. Once this happens, the waiting thread
+prints that it found the user and exits.
+If so, all tasks with exit successfully
+and the program should quit printing
+"OK".
+
 ## Part 1 - Analyze the Java Program
 
-Run the Java program a few times. Sometimes it fails with a stacktrace. Why?
+Run the Java program a few times. It should
+fail sporadically with a stacktrace. Why?
 
 ## Part 2 - Fix the same mistake in Rust
 
-You have a skeleton of the same solution in Rust. Uncomment the incrementing logic and see what
-happens. Can you fix the problem?
+You have a skeleton of the same solution in Rust. The commented code is a naive attempt to
+code this program in Rust. Does it compile?
+Can you fix the problem? Is it easy to make
+the same mistake when coding in Rust?
 
 ### Things to Know
 
