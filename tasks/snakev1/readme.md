@@ -24,8 +24,7 @@ However, we haven't implemented the `route_msg` function yet!
 First of all find out what message we just received.
 
 Things you might need:
-- match;
-- matching enums.
+- [match](https://doc.rust-lang.org/1.6.0/book/patterns.html).
 
 ### Sending a start game message
 With the routing in place add, respond to the `Inbound::PlayerRegistered` message
@@ -33,8 +32,8 @@ with an empty `Outbound::StartGame` message.
 
 Things you might need:
 - `render_outbound_message`;
-- `ws::Sender::send`;
-- the `?` operator;
+- `ws::Sender::send`, see the [documentation for the websocket library](https://ws-rs.org/docs);
+- the `?` operator, see [this post for an example](https://m4rw3r.github.io/rust-questionmark-operator).
 
 ### Responding with a direction
 When you got the routing set up it is time to respond to the `MapUpdate` event with
@@ -48,9 +47,9 @@ Finally, when we receive the `Inbound::GameEnded` message, close the websocket d
 normally.
 
 Things you might need:
-- `ws::Sender::close`
+- `ws::Sender::close`, see the [documentation for the websocket library](https://ws-rs.org/docs).
 
-### Bonus: GameLink
+### Bonus: `GameLink`
 If you got time, then print the url for the game, this information can be found
 in the message.
 
