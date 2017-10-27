@@ -16,7 +16,7 @@ public class App4 {
         public String lastName;
     }
 
-    static class Users {
+    static class UserRepo {
         List<User> users = Collections.synchronizedList(new ArrayList<User>());
 
         public void add(User user) {
@@ -34,13 +34,12 @@ public class App4 {
         final int writers = 100;
         final ExecutorService executorService = Executors.newFixedThreadPool(writers);
         final ArrayList<Future> futures = new ArrayList<>();
-        final Users users = new Users();
+        final UserRepo userRepo = new UserRepo();
 
-        final CountDownLatch found99sson = new CountDownLatch(1);
-
+        // Task which finds the needle
         futures.add(executorService.submit(() -> {
             while (true) {
-                if (users.getLastNames().contains("99sson")) {
+                if (userRepo.getLastNames().contains("99sson")) {
                     System.out.println("Found Pelle 99sson!");
                     break;
                 }
@@ -49,10 +48,11 @@ public class App4 {
             return null;
         }));
 
+        // Tasks who build the haystack
         for (int i = 0; i < writers; i++) {
             int currentI = i;
             futures.add(executorService.submit(() ->
-                    users.add(new User("Pelle", currentI + "sson"))));
+                    userRepo.add(new User("Pelle", currentI + "sson"))));
         }
         for (Future future : futures) {
             future.get(1, TimeUnit.SECONDS);
