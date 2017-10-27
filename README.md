@@ -34,7 +34,7 @@ rustc --version
 # rustc 1.21.0 (3b72af97e 2017-10-09)
 
 rustup install nightly-2017-10-15
-# We'll add an override for this specific repository, so ensure you stand the root of it when running the command
+# IMPORTANT: This should be done at the root of the repository, i.e. pwd = ~/repos/where-rust-shines
 rustup override set nightly
 rustc --version
 # Should print something similar this:

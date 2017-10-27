@@ -36,7 +36,7 @@ pub enum Inbound {
 pub fn handle_inbound_msg(s: &str) -> Result<Inbound, Error> {
     let mut json_value = from_str::<Value>(s)
         .expect(&format!("Couldn't parse string into JSON: {:?}", s));
-    let mut map = json_value.as_object_mut()
+    let map = json_value.as_object_mut()
         .expect(&format!("Couldn't parse string into JSON object: {:?}", s));
     let type_value = map.remove("type").expect(&format!("Couldn't find key `type` in: {:?}", &map));
     let type_str = type_value.as_str().expect(&format!("Couldn't turn JSON Value into string: {:?}", &map));
@@ -50,7 +50,6 @@ pub enum Outbound {
     RegisterPlayer{playerName: String, gameSettings: GameSettings},
     StartGame,
     RegisterMove{direction: Direction, gameTick: u32, receivingPlayerId: String, gameId: String},
-    HeartBeat{receivingPlayerId: String},
     ClientInfo,
 }
 
@@ -70,10 +69,6 @@ pub fn render_outbound_message(msg: Outbound) -> String {
             "gameTick": gameTick,
             "receivingPlayerId": receivingPlayerId,
             "gameId": gameId,
-        }),
-        Outbound::HeartBeat {receivingPlayerId} => json!({
-            "type": "se.cygni.snake.api.request.HeartBeatRequest",
-            "receivingPlayerId": receivingPlayerId,
         }),
         Outbound::ClientInfo => json!({
             "type": "se.cygni.snake.api.request.ClientInfo",
