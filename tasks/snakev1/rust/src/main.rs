@@ -1,7 +1,5 @@
 #![allow(non_snake_case)]
 #[macro_use]
-extern crate log;
-#[macro_use]
 extern crate quick_error;
 #[macro_use]
 extern crate serde_derive;
@@ -56,55 +54,7 @@ struct Client {
 }
 
 fn route_msg(client: &mut Client, str_msg: &String) -> Result<(), ClientError> {
-    let snake = &mut client.snake;
-
-    match handle_inbound_msg(str_msg)? {
-        Inbound::GameEnded(msg) => {
-            snake.on_game_ended(&msg);
-            client.out.close(ws::CloseCode::Normal)?;
-        }
-        Inbound::TournamentEnded(msg) => {
-            snake.on_tournament_ended(&msg);
-            client.out.close(ws::CloseCode::Normal)?;
-        }
-        Inbound::MapUpdate(msg) => {
-            let m = render_outbound_message(Outbound::RegisterMove {
-                direction: snake.get_next_move(&msg),
-                gameTick: msg.gameTick,
-                receivingPlayerId: msg.receivingPlayerId,
-                gameId: msg.gameId,
-            });
-            client.out.send(m)?;
-        }
-        Inbound::SnakeDead(msg) => {
-            snake.on_snake_dead(&msg);
-        }
-        Inbound::GameStarting(msg) => {
-            snake.on_game_starting(&msg);
-        }
-        Inbound::PlayerRegistered(msg) => {
-            println!("Successfully registered player");
-            snake.on_player_registered(&msg);
-            let m = render_outbound_message(Outbound::StartGame);
-            client.out.send(m)?;
-        }
-        Inbound::InvalidPlayerName(msg) => {
-            snake.on_invalid_playername(&msg);
-        }
-        Inbound::HeartBeatResponse(_) => {
-            // do nothing
-        }
-        Inbound::GameLink(msg) => {
-            println!("Watch game at {}", msg.url);
-        }
-        Inbound::GameResult(msg) => {
-            println!("We got some game result!");
-        }
-        Inbound::UnrecognizedMessage => {
-            println!("Received unrecognized message!");
-        }
-    };
-
+    // TODO: this needs to be fleshed out
     Ok(())
 }
 
@@ -114,9 +64,9 @@ impl ws::Handler for Client {
         let m = render_outbound_message(Outbound::ClientInfo);
         self.out.send(m)?;
         let msg = render_outbound_message(Outbound::RegisterPlayer {
-            playerName: self.config.snake_name.clone(),
-            gameSettings: Default::default(), 
-        });
+                                              playerName: self.config.snake_name.clone(),
+                                              gameSettings: Default::default(),
+                                          });
         println!("Registering player with message: {:?}", msg);
 
         self.out.send(msg)
