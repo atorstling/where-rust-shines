@@ -216,8 +216,7 @@ If you finish all of the above, begin or continue with `snakev1`.
 ## TODO 
 - [x] Presentation: Rust syntax (Barkis)
 - [x] Presentation: Result & Option vs Exception & Mutable, Move semantics (ägandeskap) (Barkis)
-- [ ] Övning kring Option (Barkis)
-- [ ] Övning kring Result (Barkis)
+- [x] Övning kring Option (Barkis)
 - [ ] Presentation: Rusts koncept (Torstling)
 - [ ] Presentation: trådning (Torstling)
 - [ ] Sy ihop det hela (Barkis)
