@@ -1,63 +1,65 @@
 package se.cygni.rc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.*;
+import java.util.stream.Collectors;
 
 public class App {
 
     static class User {
-        
-    }
-
-    static class UserRegistry {
-        int totalAge;
-    }
-
-    public static void main(String[] args) throws Exception {
-        final int elementCount = 100000;
-
-        final MyList<Integer> l = addThreaded(elementCount);
-
-        // Check that size adds up
-        final int size = l.getSize();
-        if (size != elementCount) {
-            final Set<Integer> missingInts = intRange(0, elementCount);
-            missingInts.removeAll(Arrays.asList(l.toArray()));
-            throw new IllegalStateException(String.format("Wrote %d elements, could only find %d written. Missing: %s", elementCount, size, missingInts));
-        } else {
-            System.out.println("OK");
+        User(String firstName, String lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
         }
+
+        String firstName;
+        String lastName;
     }
 
-    private static MyList<Integer> addThreaded(int elementCount) throws InterruptedException, ExecutionException, TimeoutException {
-        // Create N tasks to add one element each to the list
-        final ExecutorService pool = Executors.newFixedThreadPool(10);
+    private List<User> users = Collections.synchronizedList(new ArrayList<User>());
+
+    private Set<String> getLastNames() {
+        return users.stream()
+                .map(u -> u.lastName)
+                .collect(Collectors.toSet());
+    }
+
+    private void run() throws InterruptedException, ExecutionException, TimeoutException {
+        final int writers = 100;
+        final ExecutorService executorService = Executors.newFixedThreadPool(writers);
         final ArrayList<Future> futures = new ArrayList<>();
-        final MyList<Integer> l = new MyList<>();
-        for (int i = 0; i < elementCount; i++) {
-            int finalI = i;
-            final Future<?> f = pool.submit(() -> l.add(finalI));
-            futures.add(f);
+
+        // Task which finds the needle
+        futures.add(executorService.submit(() -> {
+            while (true) {
+                if (getLastNames().contains("99sson")) {
+                    System.out.println("Found Pelle 99sson!");
+                    break;
+                }
+                Thread.sleep(10);
+            }
+            return null;
+        }));
+
+        // Tasks who build the haystack
+        for (int i = 0; i < writers; i++) {
+            int currentI = i;
+            futures.add(executorService.submit(() ->
+                    users.add(new User("Pelle", currentI + "sson"))));
         }
         for (Future future : futures) {
             future.get(1, TimeUnit.SECONDS);
         }
-        pool.shutdown();
-        final boolean success = pool.awaitTermination(1, TimeUnit.SECONDS);
+
+        executorService.shutdown();
+        final boolean success = executorService.awaitTermination(1, TimeUnit.SECONDS);
         if (!success) {
-            throw new IllegalStateException("Timeout waiting for thread pool to terminate");
+            throw new RuntimeException("Timeout waiting for executorService to terminate");
         }
-        return l;
+        System.out.println("OK");
     }
 
-    private static Set<Integer> intRange(int from, int to) {
-        final LinkedHashSet<Integer> ints = new LinkedHashSet<>(to-from);
-        for (int i = from; i < to; i++) {
-            ints.add(i);
-        }
-        return ints;
+    public static void main(String[] args) throws Exception {
+        new App().run();
     }
 }
