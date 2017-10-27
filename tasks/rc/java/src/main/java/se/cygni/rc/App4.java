@@ -16,30 +16,23 @@ public class App4 {
         public String lastName;
     }
 
-    static class UserRepo {
-        List<User> users = Collections.synchronizedList(new ArrayList<User>());
+    List<User> users = Collections.synchronizedList(new ArrayList<User>());
 
-        public void add(User user) {
-            users.add(user);
-        }
-
-        public Set<String> getLastNames() {
-            return users.stream()
-                    .map(u -> u.lastName)
-                    .collect(Collectors.toSet());
-        }
+    public Set<String> getLastNames() {
+        return users.stream()
+                .map(u -> u.lastName)
+                .collect(Collectors.toSet());
     }
 
-    public static void main(String[] args) throws Exception {
+    public void run() throws InterruptedException, ExecutionException, TimeoutException {
         final int writers = 100;
         final ExecutorService executorService = Executors.newFixedThreadPool(writers);
         final ArrayList<Future> futures = new ArrayList<>();
-        final UserRepo userRepo = new UserRepo();
 
         // Task which finds the needle
         futures.add(executorService.submit(() -> {
             while (true) {
-                if (userRepo.getLastNames().contains("99sson")) {
+                if (getLastNames().contains("99sson")) {
                     System.out.println("Found Pelle 99sson!");
                     break;
                 }
@@ -52,7 +45,7 @@ public class App4 {
         for (int i = 0; i < writers; i++) {
             int currentI = i;
             futures.add(executorService.submit(() ->
-                    userRepo.add(new User("Pelle", currentI + "sson"))));
+                    users.add(new User("Pelle", currentI + "sson"))));
         }
         for (Future future : futures) {
             future.get(1, TimeUnit.SECONDS);
@@ -64,5 +57,9 @@ public class App4 {
             throw new RuntimeException("Timeout waiting for executorService to terminate");
         }
         System.out.println("OK");
+    }
+
+    public static void main(String[] args) throws Exception {
+        new App4().run();
     }
 }

@@ -1,5 +1,6 @@
 extern crate crossbeam;
 use std::sync::Mutex;
+use std::collections::HashSet;
 
 #[derive(Debug)]
 struct User {
@@ -12,27 +13,26 @@ struct UserRepo {
     users: Vec<User>
 }
 
-impl UserRepo {
-    fn new() -> UserRepo {
-        UserRepo {
-            users: vec![]
-        }
-    }
-
-    fn add_user(&mut self, user: User) {
-        self.users.push(user);
-    }
-}
-
 fn main() {
     let thread_count = 10;
     let element_count = 100000;
-    let mut user_repo = UserRepo::new();
+    let mut users: Vec<User> = vec![];
     crossbeam::scope(|scope| {
         for _ in 0..thread_count {
             scope.spawn(|| {
+                loop {
+                    let last_names: HashSet<String> = users.iter().map(|u| u.last_name)
+                    .collect();
+                    if last_names.contains("99sson") {
+                        println!("Found Pelle 99sson");
+                        break;
+                    }
+                    std::thread::sleep(std::time::Duration::from_millis(10));
+                }
+            });
+            scope.spawn(|| {
                             for i in 0..(element_count / thread_count) {
-                                user_repo.add_user(User {
+                                users.push(User {
                                     first_name: "Pelle".to_owned(),
                                     last_name: (i.to_string() + "sson").to_owned()
                                 });
@@ -44,5 +44,5 @@ fn main() {
                         });
         }
     });
-    println!("Result : {:?}", user_repo);
+    println!("Result : {:?}", users);
 }
