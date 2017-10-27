@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+// Not solved by Rust (sync several fields)
 class CircularBuffer<T> {
     private final int capacity;
     private int writeLocation;
@@ -54,7 +55,7 @@ class CircularBuffer<T> {
         final ExecutorService pool = Executors.newFixedThreadPool(10);
         final ArrayList<Future> futures = new ArrayList<>();
         final CircularBuffer<Integer> l = new CircularBuffer<Integer>(10);
-        final int nElems = 10000;
+        final int nElems = 100;
         for (int i = 0; i < nElems; i++) {
             int finalI = i;
             final Future<?> f = pool.submit(() -> l.add(finalI));

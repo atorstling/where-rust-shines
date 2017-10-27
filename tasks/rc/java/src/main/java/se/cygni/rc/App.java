@@ -8,6 +8,14 @@ import java.util.concurrent.*;
 
 public class App {
 
+    static class User {
+        
+    }
+
+    static class UserRegistry {
+        int totalAge;
+    }
+
     public static void main(String[] args) throws Exception {
         final int elementCount = 100000;
 

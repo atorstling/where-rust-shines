@@ -24,3 +24,11 @@ public static void main(String[] args) throws Exception {
 
         System.out.printf("Result of %s*%s increments: %d", threadCount, incrementsPerThread, i);
     }
+
+Mutex:
+Rust guarantees that you protect all the data that you access with a Mutex.
+In Java we could do different things which violates this:
+  * Increment a counter in parallel with a list, but only synchronize on the
+    list. -> not guaranteed to be in sync
+    Rust would not allow this without holding at least a different mutex on the counter
+  * Synchronize on a mutable variable. Rust would forbid doing this (I guess?)
