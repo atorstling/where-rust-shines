@@ -54,7 +54,7 @@ struct Client {
 }
 
 fn route_msg(client: &mut Client, str_msg: &String) -> Result<(), ClientError> {
-    // TODO: this needs to be fleshed out
+    // TODO: Route the messages properly
     Ok(())
 }
 
