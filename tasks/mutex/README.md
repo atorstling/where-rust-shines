@@ -53,3 +53,4 @@ the same mistake when coding in Rust?
        println!("{:?}", m);
    }
    ```
+   This concept is called [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) 
