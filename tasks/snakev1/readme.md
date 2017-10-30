@@ -2,7 +2,7 @@
 This exercise will show how it is to work on a somewhat larger Rust project and
 to try writing without too much restrictions.
 
-The code is a very stripped-down version of the current snakebot client with
+The code is a very stripped-down version of the current snakebot-client with
 only the most relevant code (and some additional util functions that you shouldn't
 care too much about).
 

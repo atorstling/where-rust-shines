@@ -201,22 +201,16 @@ other two in groups:
 
 ### Part 1
 The exercises for Part 1 should be done in the following order:
+- [ ] `syntax`
 - [ ] `npe`
 - [ ] `ownership` 
+- [ ] `optionsaregreat`
 
-If you finish all of the above, look at the task `snakev1` which is a larger Rust
+**If you finish all of the above**, look at the task `snakev1` which is a larger Rust
 project.
 
 ### Part 2
 - [ ] `atomic`
 - [ ] `mutex`
 
-If you finish all of the above, begin or continue with `snakev1`.
-
-## TODO 
-- [x] Presentation: Rust syntax (Barkis)
-- [x] Presentation: Result & Option vs Exception & Mutable, Move semantics (ägandeskap) (Barkis)
-- [x] Övning kring Option (Barkis)
-- [x] Presentation: Rusts koncept - the pitch (Torstling)
-- [ ] Presentation: trådning (Torstling)
-- [ ] Sy ihop det hela (Barkis)
+**If you finish all of the above**, begin or continue with `snakev1`.

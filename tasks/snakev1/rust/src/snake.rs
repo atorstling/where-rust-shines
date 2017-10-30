@@ -8,13 +8,11 @@ impl Snake {
         let map = &msg.map;
         let snake = map.get_snake_by_id(&msg.receivingPlayerId).unwrap();
 
-        for &d in [
-            Direction::Down,
-            Direction::Left,
-            Direction::Right,
-            Direction::Up,
-        ].into_iter()
-        {
+        for &d in [Direction::Down,
+                   Direction::Left,
+                   Direction::Right,
+                   Direction::Up]
+                    .into_iter() {
             if map.can_snake_move_in_direction(snake, d) {
                 println!("Snake will move in direction {:?}", d);
                 return d;

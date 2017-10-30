@@ -14,7 +14,7 @@ fn main() {
     crossbeam::scope(|scope| {
         scope.spawn(|| loop {
                         let last_names: HashSet<String> =
-                users.iter().map(|ref u| u.last_name.clone()).collect();
+                            users.iter().map(|ref u| u.last_name.clone()).collect();
                         if last_names.contains("99sson") {
                             println!("Found Pelle 99sson");
                             break;

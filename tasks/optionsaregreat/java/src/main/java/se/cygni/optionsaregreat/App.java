@@ -37,6 +37,7 @@ public class App {
 
     private static final class DumbLibrary { 
         public Path getConfigurationFilePath() {
+            // TODO: To run this, point this at a file that is readable
             Path path = Paths.get("/some/file");
             return path;
         }

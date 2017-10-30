@@ -49,7 +49,7 @@ pub struct PlayerRegistered {
     pub gameMode: String,
     pub receivingPlayerId: String,
     pub name: String,
-    pub gameSettings: GameSettings
+    pub gameSettings: GameSettings,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -95,7 +95,7 @@ pub struct GameStarting {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct HeartBeatResponse {
-    pub receivingPlayerId: String
+    pub receivingPlayerId: String,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
@@ -120,7 +120,7 @@ pub struct GameResult {
     pub receivingPlayerId: String,
     gameId: String,
     playerRanks: Vec<PlayerResult>,
-} 
+}
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct PlayerResult {
@@ -138,7 +138,7 @@ pub struct Map {
     pub worldTick: u32,
     pub snakeInfos: Vec<SnakeInfo>,
     pub foodPositions: Vec<i32>,
-    pub obstaclePositions: Vec<i32>
+    pub obstaclePositions: Vec<i32>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
@@ -147,5 +147,5 @@ pub struct SnakeInfo {
     pub points: i32,
     pub positions: Vec<i32>,
     pub tailProtectedForGameTicks: u32,
-    pub id: String
+    pub id: String,
 }
