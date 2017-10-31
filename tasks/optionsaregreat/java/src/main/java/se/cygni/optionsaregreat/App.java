@@ -25,9 +25,9 @@ public class App {
             .map(p -> library.getConfiguration(p)).orElse(null);
 
         if (config == null) {
-            System.out.println("We got a config:  " + config);
-        } else {
             System.out.println("No config");
+        } else {
+            System.out.println("We got a config:  " + config);
         }
     }
 
